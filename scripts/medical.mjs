@@ -8,8 +8,8 @@ function output(v){
   if(!v.length){console.log('(none)');return;}
   if(v[0].question){for(const q of v){console.log('\n'+q.question);output(q.rows);}return;}
   const keys=Object.keys(v[0]);const widths=keys.map(k=>Math.min(64,Math.max(k.length,...v.map(r=>cell(r[k]).length))));
-  console.log(keys.map((k,i)=>k.padEnd(widths[i])).join(' | '));console.log(widths.map(w=>'-'.repeat(w)).join('-+-'));
-  for(const r of v)console.log(keys.map((k,i)=>cell(r[k]).replace(/\n/g,' ').slice(0,widths[i]).padEnd(widths[i])).join(' | '));
+  console.log(keys.map((k,i)=>k.replaceAll('_',' ').padEnd(widths[i])).join('  '));console.log(widths.map(w=>'-'.repeat(w)).join('  '));
+  for(const r of v)console.log(keys.map((k,i)=>cell(r[k]).replace(/\n/g,' ').slice(0,widths[i]).padEnd(widths[i])).join('  '));
  }else console.log(JSON.stringify(v,null,2));
 }
 if(o.help||!args.length){console.log('Medical information administrative desk. No medical answers or sends.\nCommands: '+COMMANDS.join(', ')+'\nFlags use --name=value. See docs/cli.md.');}

@@ -53,7 +53,7 @@ try{
  await call('approve-review',[r2.id],{actor:'Reviewer',decision:'approved',evidence:'review://3'});
  await call('withdraw-source',[s.id],{...a,evidence:'withdrawal://1'});
  await fails('record-response',[i2.id],{...a,evidence:'delivery://bad'},/expired or withdrawn/);
- assert.ok((await call('compliance')).some(x=>x.id===i2.id&&x.rule==='SOURCE'));
+ assert.ok((await call('compliance')).some(x=>x.subject==='Withdrawal check'&&x.rule==='SOURCE'));
  await call('revise-response',[i2.id],{...a,evidence:'revision://source-withdrawn'});
  const current=await call('add-source',[],{...a,product:p.id,title:'Controlled source',version:'v2',reference:'controlled://source-v2',approver:'Reviewer',evidence:'approval://2','valid-until':future});
  const replacement=await call('submit-review',[i2.id],{...a,source:current.id,response:'controlled://revised'});

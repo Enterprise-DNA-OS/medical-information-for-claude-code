@@ -11,3 +11,7 @@
 ## Hosted test limitation
 
 The [manual GitHub Actions run](https://github.com/Enterprise-DNA-OS/medical-information-for-claude-code/actions/runs/39511701719) was refused before any job steps ran. GitHub's annotation says recent account payments failed or the spending limit needs to be increased. Windows execution remains unverified. The workflow retains its Windows/Linux Node 20/22 matrix and PostgreSQL 17 job for an eventual rerun. No claim is made that this hosted run passed.
+
+## Comparison-page browser checks
+
+A focused Astro render used the actual shared page, components, styles and registry. Desktop and 390-pixel mobile screenshots were inspected. All three captured command outputs render as tables, the demo tabs switch, six booking links carry the replacement offer, the robots tag is noindex,nofollow and there is no horizontal page overflow. This is rendering evidence, not proof that the production deployment has completed.

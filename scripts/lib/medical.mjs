@@ -10,10 +10,10 @@ export const READS={
  inquiries:'select * from inquiry_desk order by received_on,id',
  triage:"select * from inquiry_desk where state='open' order by case when kind='medical' then 1 else 0 end,due_on,id",
  'due-replies':'select subject,product,owner,due_on,days_late from due_replies order by due_on,id',
- 'source-review':'select * from source_review order by valid_until,id',
+ 'source-review':'select product,title,version,valid_until,linked_inquiries from source_review order by valid_until,id',
  escalations:'select * from escalation_desk order by subject,handoff_id',
  attention:'select * from attention order by subject,reason',
- compliance:'select * from compliance_findings order by subject,rule',
+ compliance:'select subject,rule,issue from compliance_findings order by subject,rule',
  'retention-review':'select id,subject,owner,state,retention_on from inquiry_desk where retention_on<=current_date order by retention_on,id',
  activity:'select * from events order by created_at,id'
 };
