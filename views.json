@@ -6,7 +6,7 @@
     "sections": [
       {
         "title": "Medical desk week",
-        "sql": "select * from due_replies order by due_on"
+        "sql": "select subject,product,owner,state,due_on,days_late from due_replies order by due_on"
       }
     ]
   },
@@ -17,7 +17,7 @@
     "sections": [
       {
         "title": "Specialist handoffs",
-        "sql": "select * from escalation_desk order by subject"
+        "sql": "select subject,kind,owner,team,reference,acknowledged_by from escalation_desk order by subject"
       }
     ]
   },
@@ -28,7 +28,7 @@
     "sections": [
       {
         "title": "Evidence and retention review",
-        "sql": "select * from compliance_findings order by subject,rule"
+        "sql": "select subject,rule,issue from compliance_findings order by subject,rule"
       }
     ]
   }

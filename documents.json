@@ -8,11 +8,15 @@
       {
         "title": "Request record",
         "note": "Internal administrative record. No clinical content or regulatory submission.",
-        "sql": "select * from inquiry_desk where id=$1"
+        "sql": "select replace(k,'_',' ') as field,v as value from inquiry_desk i cross join lateral jsonb_each_text(to_jsonb(i)-'id') as f(k,v) where i.id=$1 order by k"
       },
       {
         "title": "Review evidence",
-        "sql": "select r.response_ref,r.decision,r.preparer,r.reviewer,r.evidence,s.title,s.version,s.reference,s.valid_until,s.withdrawn from reviews r join sources s on s.id=r.source_id where r.inquiry_id=$1"
+        "sql": "select response_ref,decision,reviewer,evidence from reviews where inquiry_id=$1 order by created_at"
+      },
+      {
+        "title": "Controlled source references",
+        "sql": "select s.title,s.version,s.reference,s.valid_until,s.withdrawn from reviews r join sources s on s.id=r.source_id where r.inquiry_id=$1"
       },
       {
         "title": "Specialist acknowledgements",
@@ -33,11 +37,15 @@
       {
         "title": "Request record",
         "note": "Internal administrative record. No clinical content or regulatory submission.",
-        "sql": "select * from inquiry_desk where id=$1"
+        "sql": "select replace(k,'_',' ') as field,v as value from inquiry_desk i cross join lateral jsonb_each_text(to_jsonb(i)-'id') as f(k,v) where i.id=$1 order by k"
       },
       {
         "title": "Review evidence",
-        "sql": "select r.response_ref,r.decision,r.preparer,r.reviewer,r.evidence,s.title,s.version,s.reference,s.valid_until,s.withdrawn from reviews r join sources s on s.id=r.source_id where r.inquiry_id=$1"
+        "sql": "select response_ref,decision,reviewer,evidence from reviews where inquiry_id=$1 order by created_at"
+      },
+      {
+        "title": "Controlled source references",
+        "sql": "select s.title,s.version,s.reference,s.valid_until,s.withdrawn from reviews r join sources s on s.id=r.source_id where r.inquiry_id=$1"
       },
       {
         "title": "Specialist acknowledgements",
@@ -58,11 +66,15 @@
       {
         "title": "Request record",
         "note": "Internal administrative record. No clinical content or regulatory submission.",
-        "sql": "select * from inquiry_desk where id=$1"
+        "sql": "select replace(k,'_',' ') as field,v as value from inquiry_desk i cross join lateral jsonb_each_text(to_jsonb(i)-'id') as f(k,v) where i.id=$1 order by k"
       },
       {
         "title": "Review evidence",
-        "sql": "select r.response_ref,r.decision,r.preparer,r.reviewer,r.evidence,s.title,s.version,s.reference,s.valid_until,s.withdrawn from reviews r join sources s on s.id=r.source_id where r.inquiry_id=$1"
+        "sql": "select response_ref,decision,reviewer,evidence from reviews where inquiry_id=$1 order by created_at"
+      },
+      {
+        "title": "Controlled source references",
+        "sql": "select s.title,s.version,s.reference,s.valid_until,s.withdrawn from reviews r join sources s on s.id=r.source_id where r.inquiry_id=$1"
       },
       {
         "title": "Specialist acknowledgements",
