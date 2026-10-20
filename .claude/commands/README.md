@@ -1,5 +1,3 @@
-# Slash commands
+# Medical desk recipes
 
-One file per recurring job. Each command tells Claude Code exactly which CLI command to run and how to present the result, so the operator never re-explains the job.
-
-Add a command every time the same ask comes twice. Frontmatter needs a `description:` line. The body is the brief.
+Thirty-one CLI commands plus /customise, /new-view, /documents and /view. Every recipe uses the same database. Read CLAUDE.md first. Drafts stay local. Medical answers, safety decisions and submissions stay in the responsible specialists' systems.

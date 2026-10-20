@@ -12,3 +12,5 @@ The operator will describe a change in their own words, for example "add a PO nu
 6. Update `brand.json` if the change is a branding one (business name, logo, colours) instead of a schema one, and rerun `npm run docs` or `npm run view` to show it.
 
 Report in three lines: what changed, the migration file, the commands that now show it. Never delete a column or a table without an explicit yes in this session.
+
+Medical desk boundary: preserve independent review, source validity and specialist handoff checks. Never add medical-answer generation or regulatory submissions as a routine customisation.

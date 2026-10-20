@@ -1,0 +1,3 @@
+Inquiry ID,Subject,Product,Owner,Request Type,Created Date,Due Date,Retention Review Date,Requester Reference,Request Evidence,Status
+SF-DEMO-001,"Information index, current version",Demo Product Alpha,Mira,medical,2026-10-01,2026-10-08,2027-10-01,hcp-import-1,evidence://import/1,Closed
+SF-DEMO-002,Specialist callback,Demo Product Beta,Noah,safety,2026-10-02,2026-10-03,2027-10-02,hcp-import-2,evidence://import/2,New

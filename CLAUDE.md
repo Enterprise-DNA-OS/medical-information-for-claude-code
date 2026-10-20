@@ -1,43 +1,60 @@
-# Medical Information for Claude Code: operating instructions
+# Medical Information for Claude Code
 
-This file is the brain. Claude Code reads it at the start of every session. It says who this is for, how work gets done, and the one right way to do each recurring job.
+An administrative desk for a medical-information coordinator. The database holds request labels, product references, owners, dates, approved-source references, review evidence and specialist acknowledgements. It contains no medical-answer engine.
 
-## Who this is for
+## Working rules
 
-- **Business:** [YOUR BUSINESS]
-- **Operator:** [YOUR NAME], [your role]
-- **What matters most:** [the one or two outcomes you care about]
+- Read records through the CLI before responding. Never invent a record, output or evidence reference.
+- Never store clinical narratives, patient details, diagnoses or adverse-event payloads. Use references to their protected systems.
+- Never write medical answers, assess causality, classify reportability, set regulatory deadlines or submit a report. Responsible specialists own these decisions.
+- Nothing sends. Drafts are internal cover sheets and handovers under drafts/.
+- Independent reviewer labels must differ from preparer labels. Labels are not authentication. A shared installation needs controlled access and verified identities.
+- Never infer approval from imported status. Imported rows remain historical until explicitly reconciled.
+- Never delete records or change a safety gate without explicit authority. Retention review flags records; disposal requires a scoped decision covering exports and backups.
+- Keep migrations immutable. Change the model with /customise, run tests, then show the result.
 
-Fill this in once. A worker with context knows. A worker without it guesses.
+## Routes
 
-## How to work
+- /products: Read the product register.
+- /sources: Read controlled source references and versions.
+- /inquiries: Read the request register.
+- /inquiry: Read a request, its reviews, handoffs and history.
+- /triage: Triage the open request queue.
+- /due-replies: Review replies due this week.
+- /source-review: Review expired, withdrawn and soon-expiring sources.
+- /escalations: Reconcile specialist handoffs.
+- /attention: Find overdue work and evidence gaps.
+- /compliance: Review record checks and their cited limits.
+- /retention-review: Review records due for a retention decision.
+- /activity: Read the event history.
+- /insights: Answer ten cross-record questions.
+- /add-product: Add a product reference.
+- /add-source: Record an approved controlled source.
+- /withdraw-source: Withdraw a source after the responsible reviewer decides.
+- /add-inquiry: Register an administrative request.
+- /assign: Assign an active request.
+- /activate: Reconcile imported history into an active request.
+- /submit-review: Submit a prepared response reference for independent review.
+- /approve-review: Record an independent reviewer decision.
+- /revise-response: Return an undelivered ready response for a new review.
+- /record-response: Record evidence that a reviewed response was delivered externally.
+- /escalate: Record a handoff completed through the specialist process.
+- /acknowledge-handoff: Record the specialist acknowledgement.
+- /close: Close administrative work after evidence checks.
+- /log: Log a follow-up reference.
+- /import: Bring in a Salesforce Details Only report.
+- /export: Export all records to a protected local JSON file.
+- /weekly-review: Draft the Monday medical desk handover.
+- /draft-response: Draft an internal response cover sheet without a medical answer.
+- /documents: render internal paperwork with npm run docs.
+- /view: render read-only dashboards with npm run view.
+- /new-view: add a read-only view.
+- /customise: add fields or adapt local policy with a migration.
 
-1. **Take a brief, not a script.** The operator describes the outcome. You run the right command and present the answer.
-2. **Read before you write.** Before drafting anything about a record, read its full history first.
-3. **Plain language.** Short sentences. No filler. Numbers in tables.
-4. **Silent success, loud problems.** No play-by-play. Say what broke and what you did about it.
-5. **Stop at the line.** Anything that sends, deletes, or faces a customer waits for a yes in this session.
+## Files and commands
 
-## Routing table: one right way for each recurring job
+scripts/medical.mjs is the CLI. docs/cli.md is its complete syntax. supabase/migrations holds the model, supabase/seed.sql is fictional demonstration data. scripts/lib/db.mjs selects a dedicated PostgreSQL DATABASE_URL or local PGlite DATA_DIR. brand.json sets the paperwork identity. views.json and documents.json declare read-only outputs. Never commit credentials, .data, drafts, exports or rendered business records.
 
-| When the operator asks for... | Use this |
-|---|---|
-| <!-- TODO(author): one row per slash command --> | `/...` |
+npm install, npm test and npm run demo are the verification path. Tests use a temporary database; TEST_DATABASE_URL is for a disposable PostgreSQL CI database only. Node 20 and 22, Windows and Linux are in the manual CI matrix.
 
-If an ask fits nothing here, run the CLI directly (`npm run <cli> -- --help`) and then propose a new command for it.
-
-## Hard rules
-
-- Never send email or messages from here. Draft to `drafts/`, a person sends.
-- Never delete records without an explicit yes in this session. Prefer marking closed or archived.
-- Never invent a record. If a name is ambiguous, list the candidates and ask.
-- The database is the source of truth. If the answer is not in it, say so.
-
-## Where things live
-
-- `scripts/` the CLI. `scripts/lib/db.mjs` picks `DATABASE_URL` (Postgres, Supabase) or the embedded database in `.data/`.
-- `supabase/migrations/` the schema, plain SQL. `npm run migrate` applies it.
-- `.claude/commands/` the slash commands. Add one every time the same ask comes twice.
-- `docs/` the thesis and the guide for moving off Salesforce Life Sciences Cloud.
-
-Built by Enterprise DNA. Installed and run for you as part of Omni: https://enterprisedna.co/omni/instead-of/salesforce-life-sciences-cloud
+Built by Enterprise DNA. Omni by Enterprise DNA installs, customises and operates the business version for a setup fee and retainer.

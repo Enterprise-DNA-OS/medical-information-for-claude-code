@@ -10,3 +10,5 @@ The operator will describe a page they want to look at, for example "a page for 
 4. Add one line to the README command table describing the view.
 
 Report: the file path, the sections it has, and the command to regenerate it. The page is read-only by design. If the operator asks for buttons or editing, explain that changes are made through the slash commands and offer to add one.
+
+Medical desk boundary: preserve independent review, source validity and specialist handoff checks. Never add medical-answer generation or regulatory submissions as a routine customisation.

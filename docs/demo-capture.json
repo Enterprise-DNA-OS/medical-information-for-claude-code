@@ -1,0 +1,24 @@
+{
+  "captured": "2026-10-20",
+  "fictional_demo": true,
+  "screens": [
+    {
+      "title": "Replies due",
+      "ask": "Which medical requests need a reply this week?",
+      "command": "npm run medical -- due-replies",
+      "output": "subject                   | product            | owner | due_on     | days_late\n--------------------------+--------------------+-------+------------+----------\nApproved document request | Demo Product Alpha | Mira  | 2026-10-15 | 5        \nSource renewal follow-up  | Demo Product Alpha | Noah  | 2026-10-17 | 3        \nReference version request | Demo Product Beta  | Noah  | 2026-10-22 | -2"
+    },
+    {
+      "title": "Source review",
+      "ask": "Which source versions need review?",
+      "command": "npm run medical -- source-review",
+      "output": "id                                   | product            | title                      | version | valid_until | withdrawn | linked_inquiries\n-------------------------------------+--------------------+----------------------------+---------+-------------+-----------+-----------------\n20000000-0000-4000-8000-000000000002 | Demo Product Alpha | Archived information index | v1      | 2026-10-10  | false     | 1               \n20000000-0000-4000-8000-000000000003 | Demo Product Beta  | Beta information index     | v1      | 2026-11-04  | false     | 0"
+    },
+    {
+      "title": "Evidence checks",
+      "ask": "Where are the gaps in our request records?",
+      "command": "npm run medical -- compliance",
+      "output": "id                                   | subject                      | rule             | issue                                           \n-------------------------------------+------------------------------+------------------+-------------------------------------------------\n30000000-0000-4000-8000-000000000005 | Old response file review     | RETENTION        | Retention review date reached                   \n30000000-0000-4000-8000-000000000003 | Product quality follow-up    | HANDOFF          | Specialist handoff not acknowledged             \n30000000-0000-4000-8000-000000000004 | Reference version request    | REQUEST_EVIDENCE | Request evidence missing                        \n30000000-0000-4000-8000-000000000002 | Safety team callback request | HANDOFF          | Specialist handoff not acknowledged             \n30000000-0000-4000-8000-000000000006 | Source renewal follow-up     | SOURCE           | Approved response source is expired or withdrawn"
+    }
+  ]
+}

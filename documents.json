@@ -1,11 +1,77 @@
 [
   {
-    "name": "example",
-    "title": "TODO(author): the first document this industry must produce",
-    "for_each": "select gen_random_uuid() as id, 'Example' as name",
-    "file": "name",
+    "name": "request-cover",
+    "title": "Request response cover sheet",
+    "for_each": "select id,subject from inquiries where kind='medical'",
+    "file": "subject",
     "sections": [
-      { "title": "Details", "sql": "select 'replace me' as item, $1::text as record_id" }
+      {
+        "title": "Request record",
+        "note": "Internal administrative record. No clinical content or regulatory submission.",
+        "sql": "select * from inquiry_desk where id=$1"
+      },
+      {
+        "title": "Review evidence",
+        "sql": "select r.response_ref,r.decision,r.preparer,r.reviewer,r.evidence,s.title,s.version,s.reference,s.valid_until,s.withdrawn from reviews r join sources s on s.id=r.source_id where r.inquiry_id=$1"
+      },
+      {
+        "title": "Specialist acknowledgements",
+        "sql": "select team,reference,acknowledged_by,acknowledgement_ref from handoffs where inquiry_id=$1"
+      },
+      {
+        "title": "Record events",
+        "sql": "select action,actor,reference,created_at from events where inquiry_id=$1 order by created_at,id"
+      }
+    ]
+  },
+  {
+    "name": "handoff-record",
+    "title": "Specialist handoff record",
+    "for_each": "select id,subject from inquiries where kind<>'medical'",
+    "file": "subject",
+    "sections": [
+      {
+        "title": "Request record",
+        "note": "Internal administrative record. No clinical content or regulatory submission.",
+        "sql": "select * from inquiry_desk where id=$1"
+      },
+      {
+        "title": "Review evidence",
+        "sql": "select r.response_ref,r.decision,r.preparer,r.reviewer,r.evidence,s.title,s.version,s.reference,s.valid_until,s.withdrawn from reviews r join sources s on s.id=r.source_id where r.inquiry_id=$1"
+      },
+      {
+        "title": "Specialist acknowledgements",
+        "sql": "select team,reference,acknowledged_by,acknowledgement_ref from handoffs where inquiry_id=$1"
+      },
+      {
+        "title": "Record events",
+        "sql": "select action,actor,reference,created_at from events where inquiry_id=$1 order by created_at,id"
+      }
+    ]
+  },
+  {
+    "name": "retention-review",
+    "title": "Retention decision worksheet",
+    "for_each": "select id,subject from inquiries where retention_on<=current_date",
+    "file": "subject",
+    "sections": [
+      {
+        "title": "Request record",
+        "note": "Internal administrative record. No clinical content or regulatory submission.",
+        "sql": "select * from inquiry_desk where id=$1"
+      },
+      {
+        "title": "Review evidence",
+        "sql": "select r.response_ref,r.decision,r.preparer,r.reviewer,r.evidence,s.title,s.version,s.reference,s.valid_until,s.withdrawn from reviews r join sources s on s.id=r.source_id where r.inquiry_id=$1"
+      },
+      {
+        "title": "Specialist acknowledgements",
+        "sql": "select team,reference,acknowledged_by,acknowledgement_ref from handoffs where inquiry_id=$1"
+      },
+      {
+        "title": "Record events",
+        "sql": "select action,actor,reference,created_at from events where inquiry_id=$1 order by created_at,id"
+      }
     ]
   }
 ]
