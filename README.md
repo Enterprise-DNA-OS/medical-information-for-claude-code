@@ -4,7 +4,7 @@ The open-source medical-information desk that is just a database and Claude Code
 
 | Do it yourself | We customise it | We run it for you |
 |---|---|---|
-| Free, MIT. [Quick start](#quick-start). | Your fields, rules and Salesforce history. [Book a call](https://enterprisedna.co/omni/book/?offer=replace-software&utm_source=github&utm_medium=readme&utm_campaign=salesforce-life-sciences-cloud). | Installed and operated through Omni by Enterprise DNA. Setup fee, then a retainer. [How it works](https://enterprisedna.co/omni/instead-of/salesforce-life-sciences-cloud). |
+| Free, MIT. [Quick start](#quick-start). | Your fields, rules and Salesforce history. [Book a call](https://enterprisedna.co/omni/book/?offer=replace-software&utm_source=github&utm_medium=readme&utm_campaign=salesforce-life-sciences-cloud). | Installed and operated through Omni by Enterprise DNA. Setup fee, then a retainer. [How it works](https://enterprisedna.co/omni/instead-of/salesforce-life-sciences-cloud?utm_source=github&utm_medium=readme&utm_campaign=salesforce-life-sciences-cloud). |
 
 ## What it holds
 
